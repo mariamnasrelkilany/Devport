@@ -10,6 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth < 600) {
+      document.body.style.fontSize = "16px";
+
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach(box => {
+        box.style.width = "90%";
+        box.style.margin = "10px auto";
+      });
+
+      const header = document.querySelector("header");
+      if (header) {
+        header.style.padding = "15px";
+      }
+    }
+  });
+</script>
     <header class="main-header">
         <nav class="main-nav">
             <a href="index.html" class="logo">{ DevPort }</a>

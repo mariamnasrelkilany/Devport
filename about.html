@@ -85,6 +85,23 @@
       Our mission is to transform your brilliant ideas into elegant, fast, and efficient web experiences.
     </p>
   </section>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth < 600) {
+      document.body.style.fontSize = "16px";
 
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach(box => {
+        box.style.width = "90%";
+        box.style.margin = "10px auto";
+      });
+
+      const header = document.querySelector("header");
+      if (header) {
+        header.style.padding = "15px";
+      }
+    }
+  });
+</script>
 </body>
 </html>
