@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DevPort</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">{ DevPort }</a>
+            <ul>
+                  <li><a href="index.html"> Home </a></li>
+                <li><a href="developers.html">Browse Developers</a></li>
+                <li><a href="join.html">For Developers</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                                <li><a href="about.html" class="nav-login">About</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main class="form-page">
+        <div class="form-container">
+            <h1 class="section-title">// Login to DevPort</h1>
+            <p class="subtitle" style="margin-bottom: 2rem;">Access your profile and connect with clients.</p>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1rem;">[ Login ]</button>
+            </form>
+            <p class="form-switch">Don't have an account? <a href="join.html">Join here</a></p>
+        </div>
+    </main>
+
+     <footer class="main-footer">
+        <p>&copy; 2025 DevPort. All rights reserved.</p>
+    </footer>
+</body>
+</html>

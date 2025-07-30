@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Developers - DevPort</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav">
+            <a href="index.html" class="logo">{ DevPort }</a>
+            <ul>
+                <li><a href="index.html"> Home </a></li>
+                <li><a href="developers.html">Browse Developers</a></li>
+                <li><a href="join.html">For Developers</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                                <li><a href="about.html" class="nav-login">About</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <main class="browse-page-main">
+        <aside class="filter-sidebar">
+            <h2 class="section-title" style="font-size: 1.5rem;">// Filters</h2>
+            <form>
+                <fieldset>
+                    <legend>{ Specialties }</legend>
+                    <label><input type="checkbox" name="specialty" value="frontend"> Frontend</label>
+                    <label><input type="checkbox" name="specialty" value="backend"> Backend</label>
+                    <label><input type="checkbox" name="specialty" value="fullstack"> Full-Stack</label>
+                </fieldset>
+                
+                <fieldset>
+                    <legend>{ Experience Level }</legend>
+                    <label><input type="radio" name="exp" value="junior"> Junior</label>
+                    <label><input type="radio" name="exp" value="mid"> Mid-Level</label>
+                    <label><input type="radio" name="exp" value="senior"> Senior</label>
+                </fieldset>
+
+                <fieldset>
+                    <legend>{ Technologies }</legend>
+                    <input type="text" placeholder="e.g., React, Node.js..." class="filter-input">
+                </fieldset>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">[ Apply Filters ]</button>
+            </form>
+        </aside>
+
+        <section class="results-grid">
+            <div class="dev-card is-visible">
+                <img src="5.png" alt="Developer Photo">
+                <h3>John Doe</h3>
+                <p class="specialty">Senior Backend Developer</p>
+                <div class="rating">★★★★☆</div>
+                <div class="skills"><span>Node.js</span><span>Express</span></div>
+                <button class="btn btn-secondary btn-chat" data-developer-name="John Doe">[ Start Chat ]</button>
+            </div>
+             <div class="dev-card is-visible">
+                <img src="7.png" alt="Developer Photo">
+                <h3>Jane Smith</h3>
+                <p class="specialty">Frontend Developer</p>
+                <div class="rating">★★★★★</div>
+                <div class="skills"><span>React</span><span>CSS</span></div>
+                <button class="btn btn-secondary btn-chat" data-developer-name="Jane Smith">[ Start Chat ]</button>
+            </div>
+            <div class="dev-card is-visible">
+                <img src="3.png" alt="Developer Photo">
+                <h3>Michael Chen</h3>
+                <p class="specialty">Frontend Developer</p>
+                <div class="rating">★★★★☆</div>
+                <div class="skills"><span>Vue.js</span><span>Sass</span></div>
+                <button class="btn btn-secondary btn-chat" data-developer-name="Michael Chen">[ Start Chat ]</button>
+            </div>
+             <div class="dev-card is-visible">
+                <img src="2.webp" alt="Developer Photo">
+                <h3>Fatima Al-Sayed</h3>
+                <p class="specialty">Full-Stack Engineer</p>
+                <div class="rating">★★★★★</div>
+                <div class="skills"><span>Laravel</span><span>Vue.js</span></div>
+                <button class="btn btn-secondary btn-chat" data-developer-name="Fatima Al-Sayed">[ Start Chat ]</button>
+            </div>
+             <div class="dev-card is-visible">
+                <img src="2.png" alt="Developer Photo">
+                <h3>David</h3>
+                <p class="specialty">Backend Developer</p>
+                <div class="rating">★★☆☆☆</div>
+                <div class="skills"><span>Python</span><span>Django</span></div>
+                <button class="btn btn-secondary btn-chat" data-developer-name="David">[ Start Chat ]</button>
+            </div>
+            <div class="dev-card is-visible">
+                <img src="1.png" alt="Developer Photo">
+                <h3>Garciae</h3>
+                <p class="specialty">Senior Backend Developer</p>
+                <div class="rating">★★★☆☆</div>
+                <div class="skills"><span>Node.js</span><span>Express</span></div>
+                <button class="btn btn-secondary btn-chat" data-developer-name="Garciae">[ Start Chat ]</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 DevPort. All rights reserved.</p>
+    </footer>
+
+    <div id="chat-modal-overlay">
+        <div id="chat-modal-content">
+            <div class="chat-header">
+                <h3 id="chat-with-name">Chat with...</h3>
+                <button id="chat-close-btn">&times;</button>
+            </div>
+            <div class="chat-messages">
+                <div class="message received">
+                    Hello! How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" placeholder="Type your message...">
+                <button class="btn btn-primary">[ Send ]</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"> 
+        document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all necessary elements from the DOM
+    const chatButtons = document.querySelectorAll('.btn-chat');
+    const chatModalOverlay = document.getElementById('chat-modal-overlay');
+    const closeChatButton = document.getElementById('chat-close-btn');
+    const chatWithNameElement = document.getElementById('chat-with-name');
+
+    // Function to open the chat modal
+    const openChatModal = (developerName) => {
+        chatWithNameElement.textContent = Chat with ${developerName};
+        chatModalOverlay.classList.add('is-open');
+    };
+
+    // Function to close the chat modal
+    const closeChatModal = () => {
+        chatModalOverlay.classList.remove('is-open');
+    };
+
+    // Add a click event listener to each "Start Chat" button
+    chatButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const developerName = button.dataset.developerName;
+            openChatModal(developerName);
+        });
+    });
+
+    // Add a click event listener to the close button
+    closeChatButton.addEventListener('click', closeChatModal);
+
+    // Add a click event listener to the overlay to close the modal
+    // when clicking outside the chat window
+    chatModalOverlay.addEventListener('click', (event) => {
+        // We check if the clicked element is the overlay itself
+        if (event.target === chatModalOverlay) {
+            closeChatModal();
+        }
+    });
+});
+    </script>
+</body>
+</html>
