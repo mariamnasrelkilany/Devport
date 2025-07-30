@@ -22,8 +22,6 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
-    /* Add smooth scrolling for better UX on mobile */
-    scroll-behavior: smooth;
 }
 
 a {
@@ -47,7 +45,6 @@ h1, h2, h3, legend {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allow navigation items to wrap on smaller screens */
 }
 .logo {
     font-family: var(--font-code);
@@ -80,49 +77,20 @@ h1, h2, h3, legend {
     background-color: rgba(100, 255, 218, 0.1);
 }
 
-/* Mobile navigation improvements */
-/* Hide desktop navigation by default and show mobile menu button */
-.main-nav ul {
-    display: none; /* Hidden by default on small screens */
-    flex-direction: column;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-.main-nav ul.is-open { /* Class to be toggled by JavaScript for mobile menu */
-    display: flex;
-}
-
-.main-nav ul li {
-    margin: 0.5rem 0;
-    text-align: center;
-}
-
-/* Burger menu icon for mobile */
-.menu-toggle {
-    display: none; /* Hidden by default */
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    cursor: pointer;
-}
-
 /* --- Hero Section (Home Page) --- */
 .hero {
     display: flex;
-    flex-direction: column; /* Stack elements vertically on mobile */
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 4rem 5%; /* Adjusted padding for mobile */
+    padding: 6rem 5%;
     min-height: 60vh;
 }
 .hero h1 {
-    font-size: 2.5rem; /* Smaller font size for mobile */
-    max-width: 100%; /* Ensure it fits the screen */
-    margin-bottom: 1rem;
-    min-height: auto; /* Allow height to adjust */
+    font-size: 3.5rem;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+    min-height: 84px;
 }
 #hero-headline::after {
     content: '_';
@@ -134,21 +102,19 @@ h1, h2, h3, legend {
     50% { color: var(--primary-color); }
 }
 .subtitle {
-    font-size: 1rem; /* Smaller font size for mobile */
-    max-width: 100%;
-    margin: 0 auto 1.5rem;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
     color: #8892b0;
 }
 .btn {
     font-family: var(--font-code);
-    padding: 0.8rem 1.2rem; /* Slightly smaller buttons */
+    padding: 0.8rem 1.5rem;
     border-radius: 4px;
     font-weight: bold;
-    margin: 0.5rem 0; /* Stack buttons vertically on mobile */
+    margin: 0 0.5rem;
     transition: all 0.3s ease;
     cursor: pointer;
-    width: 100%; /* Make buttons full width on mobile */
-    max-width: 250px; /* Limit button width for better appearance */
 }
 .btn-primary {
     background-color: var(--primary-color);
@@ -170,201 +136,382 @@ h1, h2, h3, legend {
 
 /* --- Developer Cards (Used on Home & Browse) --- */
 .featured-devs {
-    padding: 3rem 5%; /* Adjusted padding */
+    padding: 4rem 5%;
     text-align: center;
 }
 .section-title {
-    font-size: 1.8rem; /* Smaller title for mobile */
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin-bottom: 3rem;
 }
 .dev-cards-container {
-    grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 1rem; /* Smaller gap */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 .dev-card {
-    padding: 1.5rem 1rem; /* Adjusted padding */
+    background-color: var(--card-bg);
+    padding: 2rem 1.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease-in-out;
+}
+.dev-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.dev-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 .dev-card img {
-    width: 80px; /* Slightly smaller image */
-    height: 80px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--secondary-color);
+    margin-bottom: 1rem;
 }
 .dev-card .specialty {
-    font-size: 0.8rem; /* Smaller font size */
+    color: #8892b0;
+    font-size: 0.9rem;
+    margin-top: -0.8rem;
+    margin-bottom: 1rem;
 }
 .dev-card .rating {
-    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 .dev-card .skills span {
-    padding: 0.2rem 0.5rem; /* Smaller skill tags */
-    font-size: 0.7rem;
-    margin: 0.15rem;
+    background-color: #233554;
+    color: var(--text-color);
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    margin: 0.2rem;
+    display: inline-block;
+    font-family: var(--font-code);
 }
 
 /* --- Browse Page Styles --- */
 .browse-page-main {
-    flex-direction: column; /* Stack sidebar and results vertically */
-    padding: 1.5rem 5%; /* Adjusted padding */
-    gap: 1.5rem;
+    display: flex;
+    padding: 2rem 5%;
+    gap: 2rem;
 }
 .filter-sidebar {
-    width: 100%; /* Full width on mobile */
-    max-width: none; /* Remove max-width */
-    padding: 1.5rem; /* Adjusted padding */
+    width: 25%;
+    max-width: 300px;
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    align-self: flex-start;
 }
 .filter-sidebar fieldset {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
+    border: none;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+.filter-sidebar label {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.filter-sidebar input[type="text"] {
+    width: 100%;
 }
 .results-grid {
-    width: 100%; /* Full width on mobile */
-    grid-template-columns: 1fr; /* Single column on mobile */
-    gap: 1rem;
+    width: 75%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
 /* --- Form Page Styles (Join & Login) --- */
 .form-page {
-    padding: 2rem 5%; /* Adjusted padding */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 5%;
 }
 .form-container {
-    padding: 2rem; /* Adjusted padding */
-    max-width: 100%; /* Full width on mobile */
+    background-color: var(--card-bg);
+    padding: 3rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
 }
 .form-group {
-    margin-bottom: 1rem;
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-code);
 }
 input[type="text"], input[type="email"], input[type="password"] {
-    padding: 0.7rem; /* Slightly smaller input fields */
-    font-size: 0.9rem;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+.form-switch {
+    margin-top: 2rem;
+    color: #8892b0;
 }
 
 /* --- Footer --- */
 .main-footer {
-    padding: 1.5rem 5%; /* Adjusted padding */
-    margin-top: 2rem; /* Adjusted margin */
-    font-size: 0.8rem;
+    text-align: center;
+    padding: 2rem 5%;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: #8892b0;
+}
+.footer-links {
+    margin-top: 0.5rem;
 }
 .footer-links a {
-    margin: 0 0.3rem; /* Closer links */
+    color: #8892b0;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+/* Styling for the new chat button */
+.dev-card .btn-chat {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #333;
+    color: #00f0a0;
+    border: 1px solid #00f0a0;
 }
 
-/* Chat Modal */
+.dev-card .btn-chat:hover {
+    background-color: #00f0a0;
+    color: #1a1a1a;
+}
+
+/* Chat Modal Overlay - Covers the whole screen */
+#chat-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* When the modal is open */
+#chat-modal-overlay.is-open {
+    display: flex;
+}
+
+/* Chat Modal Content - The actual chat window */
 #chat-modal-content {
-    width: 95%; /* Make modal wider on smaller screens */
-    max-width: 350px; /* Maintain a reasonable max-width */
-}
-.chat-messages {
-    height: 200px; /* Slightly smaller chat message area */
-}
-.chat-input-area input {
-    padding: 0.6rem; /* Smaller input for chat */
+    background-color: #1e1e1e;
+    border: 1px solid #00f0a0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 25px rgba(0, 240, 160, 0.2);
 }
 
-/* --- Media Queries for larger screens --- */
-@media (min-width: 768px) {
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #252525;
+    border-bottom: 1px solid #333;
+}
+
+.chat-header h3 {
+    margin: 0;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+#chat-close-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+#chat-close-btn:hover {
+    color: #00f0a0;
+}
+
+.chat-messages {
+    padding: 1rem;
+    height: 250px;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    max-width: 80%;
+}
+
+.message.received {
+    background-color: #333;
+    color: #eee;
+    align-self: flex-start;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid #333;
+}
+
+.chat-input-area input {
+    flex-grow: 1;
+    background-color: #252525;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+}
+
+.chat-input-area .btn {
+    flex-shrink: 0;
+}
+
+/* --- Media Queries for Mobile (Small Screens) --- */
+/* هذه التعديلات ستطبق فقط على الشاشات التي عرضها 767 بكسل أو أقل */
+@media (max-width: 767px) {
     /* Header & Navigation */
+    .main-nav {
+        flex-direction: column; /* جعل عناصر التنقل تتكدس رأسياً */
+        align-items: flex-start; /* محاذاة اللوجو والقائمة لليسار */
+    }
     .main-nav ul {
-        display: flex; /* Show desktop nav on larger screens */
-        flex-direction: row;
-        width: auto;
-        margin-top: 0;
+        flex-direction: column; /* جعل قائمة الروابط تتكدس رأسياً */
+        width: 100%; /* جعل القائمة تأخذ عرض الشاشة بالكامل */
+        margin-top: 1rem;
+        /* هذا الجزء يفترض وجود زر قائمة (burger menu) في الـ HTML ليتم إظهاره/إخفائه بالـ JavaScript */
+        display: none; /* إخفاء القائمة افتراضياً على الموبايل */
+    }
+    .main-nav ul.is-open { /* إذا كانت القائمة مفتوحة بواسطة الـ JavaScript */
+        display: flex;
     }
     .main-nav ul li {
-        margin-left: 2rem;
-        text-align: left;
+        margin: 0.5rem 0; /* مسافة بين عناصر القائمة على الموبايل */
+        text-align: center;
+        width: 100%;
     }
-    .menu-toggle {
-        display: none; /* Hide burger menu on larger screens */
+    .nav-login {
+        margin-top: 1rem; /* مسافة أعلى لزر الدخول */
     }
 
     /* Hero Section */
     .hero {
-        padding: 6rem 5%;
+        padding: 4rem 5%; /* تقليل المسافة البادئة */
+        min-height: auto; /* السماح بارتفاع تلقائي */
     }
     .hero h1 {
-        font-size: 3.5rem;
-        max-width: 800px;
-        min-height: 84px;
+        font-size: 2.2rem; /* تصغير حجم الخط */
+        min-height: auto;
     }
     .subtitle {
-        font-size: 1.2rem;
-        max-width: 600px;
+        font-size: 0.95rem; /* تصغير حجم الخط */
+        margin-bottom: 1.5rem;
     }
     .btn {
-        width: auto; /* Auto width for buttons on larger screens */
-        max-width: none;
-        margin: 0 0.5rem; /* Restore horizontal spacing */
+        width: 100%; /* جعل الأزرار تأخذ عرض الشاشة بالكامل */
+        margin: 0.5rem 0; /* تباعد رأسي بين الأزرار */
+        max-width: 280px; /* للتحكم في عرض الأزرار الكبيرة */
     }
 
     /* Developer Cards */
+    .featured-devs {
+        padding: 2rem 5%; /* تقليل المسافة البادئة */
+    }
+    .section-title {
+        font-size: 1.6rem; /* تصغير حجم العنوان */
+        margin-bottom: 2rem;
+    }
     .dev-cards-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: 1fr; /* جعل البطاقات تتكدس في عمود واحد */
+        gap: 1rem;
     }
-    .dev-card img {
-        width: 100px;
-        height: 100px;
-    }
-    .dev-card .specialty {
-        font-size: 0.9rem;
-    }
-    .dev-card .rating {
-        font-size: 1.1rem;
-    }
-    .dev-card .skills span {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-        margin: 0.2rem;
+    .dev-card {
+        padding: 1.5rem 1rem; /* تقليل المسافة البادئة للبطاقة */
     }
 
     /* Browse Page */
     .browse-page-main {
-        flex-direction: row;
-        padding: 2rem 5%;
-        gap: 2rem;
+        flex-direction: column; /* جعل الشريط الجانبي والنتائج تتكدس رأسياً */
+        padding: 1.5rem 5%;
+        gap: 1.5rem;
     }
     .filter-sidebar {
-        width: 25%;
-        max-width: 300px;
-        padding: 2rem;
+        width: 100%; /* جعل الشريط الجانبي يأخذ عرض الشاشة بالكامل */
+        max-width: none;
+        padding: 1.5rem;
     }
     .results-grid {
-        width: 75%;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
+        width: 100%; /* جعل شبكة النتائج تأخذ عرض الشاشة بالكامل */
+        grid-template-columns: 1fr; /* جعل النتائج تتكدس في عمود واحد */
     }
 
     /* Form Page */
     .form-page {
-        padding: 4rem 5%;
+        padding: 2rem 5%;
     }
     .form-container {
-        padding: 3rem;
-        max-width: 500px;
+        padding: 1.5rem;
     }
     input[type="text"], input[type="email"], input[type="password"] {
-        padding: 0.8rem;
-        font-size: 1rem;
+        padding: 0.6rem; /* تقليل حجم حقول الإدخال */
     }
 
     /* Footer */
     .main-footer {
-        padding: 2rem 5%;
-        margin-top: 4rem;
-        font-size: 0.9rem;
+        padding: 1.5rem 5%;
+        margin-top: 2rem;
+        font-size: 0.75rem;
     }
     .footer-links a {
-        margin: 0 0.5rem;
+        margin: 0 0.4rem;
     }
 
     /* Chat Modal */
     #chat-modal-content {
-        width: 90%;
-        max-width: 400px;
+        width: 95%; /* توسيع المودال قليلاً ليناسب الشاشات الصغيرة */
     }
     .chat-messages {
-        height: 250px;
-    }
-    .chat-input-area input {
-        padding: 0.75rem;
+        height: 180px; /* تقليل ارتفاع منطقة الرسائل */
     }
 }
